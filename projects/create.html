@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Görev Takip Sistemi - Yeni Proje Oluştur</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+</head>
+<body>
+<div class="dashboard-container">
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="brand-container">
+      <div class="brand-logo">T</div>
+      <h4 class="brand-name">TaskTrack</h4>
+    </div>
+
+    <div class="menu-container">
+      <ul class="nav-menu">
+        <li class="menu-item">
+          <a href="../dashboard/admin.html">
+            <i class="bi bi-speedometer2"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="menu-item active">
+          <a href="./list.html">
+            <i class="bi bi-kanban"></i>
+            <span>Projeler</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="../tasks/list.html">
+            <i class="bi bi-list-task"></i>
+            <span>Görevler</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="../users/list.html">
+            <i class="bi bi-people"></i>
+            <span>Kullanıcılar</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="../index.html" id="logoutBtn">
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Çıkış Yap</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="bi bi-list"></i>
+      </div>
+
+      <div class="header-right">
+        <div class="notifications">
+          <i class="bi bi-bell"></i>
+          <span class="badge">3</span>
+        </div>
+
+        <div class="user-profile">
+          <div class="profile-img">
+            <span>A</span>
+          </div>
+          <div class="profile-info">
+            <span class="user-name">Admin</span>
+            <span class="user-role">Yönetici</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content Area -->
+    <div class="content-container">
+      <!-- Sayfa başlığı -->
+      <div class="content-header">
+        <h2 class="page-title">Yeni Proje Oluştur</h2>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../dashboard/admin.html">Ana Sayfa</a></li>
+            <li class="breadcrumb-item"><a href="./list.html">Projeler</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Yeni Proje</li>
+          </ol>
+        </nav>
+      </div>
+
+      <!-- Proje Oluşturma Formu -->
+      <div class="card">
+        <div class="card-body">
+          <form id="projectForm">
+            <div class="row mb-3">
+              <div class="col-md-12">
+                <label for="projectName" class="form-label">Proje Adı *</label>
+                <input type="text" class="form-control" id="projectName" placeholder="Proje adını girin" required>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-12">
+                <label for="projectDescription" class="form-label">Proje Açıklaması</label>
+                <textarea class="form-control" id="projectDescription" rows="4" placeholder="Proje açıklamasını girin"></textarea>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="startDate" class="form-label">Başlangıç Tarihi *</label>
+                <input type="date" class="form-control" id="startDate" required>
+              </div>
+              <div class="col-md-6">
+                <label for="endDate" class="form-label">Bitiş Tarihi *</label>
+                <input type="date" class="form-control" id="endDate" required>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="projectManager" class="form-label">Proje Yöneticisi *</label>
+                <select class="form-select" id="projectManager" required>
+                  <option value="">Proje Yöneticisi Seçin</option>
+                  <option value="1">Mehmet Aydın</option>
+                  <option value="2">Ayşe Kaya</option>
+                  <option value="3">Ali Demir</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="priority" class="form-label">Öncelik *</label>
+                <select class="form-select" id="priority" required>
+                  <option value="">Öncelik Seçin</option>
+                  <option value="high">Yüksek</option>
+                  <option value="medium">Orta</option>
+                  <option value="low">Düşük</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="budget" class="form-label">Bütçe</label>
+                <input type="number" class="form-control" id="budget" placeholder="Bütçe miktarı" min="0">
+              </div>
+              <div class="col-md-6">
+                <label for="status" class="form-label">Durum *</label>
+                <select class="form-select" id="status" required>
+                  <option value="">Durum Seçin</option>
+                  <option value="active">Aktif</option>
+                  <option value="in_progress">Devam Ediyor</option>
+                  <option value="on_hold">Beklemede</option>
+                  <option value="completed">Tamamlandı</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-12">
+                <label for="tags" class="form-label">Etiketler</label>
+                <input type="text" class="form-control" id="tags" placeholder="Etiketleri virgülle ayırın">
+                <small class="text-muted">Örn: web, mobile, api, frontend</small>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-12">
+                <h5 class="card-title mb-3">Ekip Üyeleri</h5>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="table-responsive">
+                      <table class="table table-hover">
+                        <thead>
+                        <tr>
+                          <th style="width: 5%"></th>
+                          <th>Kullanıcı</th>
+                          <th>Rol</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td><input type="checkbox" class="form-check-input" name="teamMembers" value="1"></td>
+                          <td>Ahmet Yılmaz - Frontend Geliştirici</td>
+                          <td>
+                            <select class="form-select form-select-sm">
+                              <option>Geliştirici</option>
+                              <option>Tasarımcı</option>
+                              <option>Tester</option>
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" class="form-check-input" name="teamMembers" value="2"></td>
+                          <td>Zeynep Kaya - Backend Geliştirici</td>
+                          <td>
+                            <select class="form-select form-select-sm">
+                              <option>Geliştirici</option>
+                              <option>Tasarımcı</option>
+                              <option>Tester</option>
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" class="form-check-input" name="teamMembers" value="3"></td>
+                          <td>Mehmet Demir - UI/UX Tasarımcı</td>
+                          <td>
+                            <select class="form-select form-select-sm">
+                              <option>Tasarımcı</option>
+                              <option>Geliştirici</option>
+                              <option>Tester</option>
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" class="form-check-input" name="teamMembers" value="4"></td>
+                          <td>Elif Şahin - Mobil Geliştirici</td>
+                          <td>
+                            <select class="form-select form-select-sm">
+                              <option>Geliştirici</option>
+                              <option>Tasarımcı</option>
+                              <option>Tester</option>
+                            </select>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="border-top pt-3 mt-4">
+              <div class="row">
+                <div class="col d-flex justify-content-end gap-2">
+                  <a href="./list.html" class="btn btn-light">İptal</a>
+                  <button type="submit" class="btn btn-primary">Proje Oluştur</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+      <p>&copy; 2025 Görev Takip Sistemi. Tüm hakları saklıdır.</p>
+    </footer>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS -->
+<script src="../assets/js/main.js"></script>
+
+<!-- Proje oluşturma işlemleri için JavaScript -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const projectForm = document.getElementById('projectForm');
+
+    // Form submit olayını yakala
+    if (projectForm) {
+      projectForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Ekip üyelerini al
+        const selectedMembers = [];
+        const memberCheckboxes = document.querySelectorAll('input[name="teamMembers"]:checked');
+        memberCheckboxes.forEach(checkbox => {
+          const row = checkbox.closest('tr');
+          const role = row.querySelector('select').value;
+          selectedMembers.push({
+            id: checkbox.value,
+            role: role
+          });
+        });
+
+        // Form verilerini al
+        const projectData = {
+          name: document.getElementById('projectName').value,
+          description: document.getElementById('projectDescription').value,
+          startDate: document.getElementById('startDate').value,
+          endDate: document.getElementById('endDate').value,
+          projectManager: document.getElementById('projectManager').value,
+          priority: document.getElementById('priority').value,
+          budget: document.getElementById('budget').value,
+          status: document.getElementById('status').value,
+          tags: document.getElementById('tags').value.split(',').map(tag => tag.trim()),
+          teamMembers: selectedMembers
+        };
+
+        // Normalde burada bir API'ye POST isteği yapılır
+        console.log('Proje Verileri:', projectData);
+
+        // Başarılı işlem sonrası proje listesine yönlendirilir
+        alert('Proje başarıyla oluşturuldu!');
+        window.location.href = './list.html';
+      });
+    }
+  });
+</script>
+</body>
+</html>
