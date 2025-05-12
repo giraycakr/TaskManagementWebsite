@@ -86,13 +86,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Çıkış işlevi
-    const logoutBtn = document.getElementById('logoutBtn');
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            logout();
-        });
-    }
+    document.addEventListener('DOMContentLoaded', function() {
+        // Çıkış işlevi
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation(); // Event'in yayılmasını engelle
+
+                // Confirm dialog
+                if (confirm('Çıkış yapmak istediğinizden emin misiniz?')) {
+                    logout();
+                }
+            });
+        }
 
     // Kullanıcı profil bilgisini güncelle
     updateUserProfile();
