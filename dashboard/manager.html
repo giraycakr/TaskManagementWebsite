@@ -48,7 +48,7 @@
           </a>
         </li>
         <li class="menu-item">
-          <a href="../index.html" id="logoutBtn">
+          <a href="#" id="logoutBtn">
             <i class="bi bi-box-arrow-right"></i>
             <span>Çıkış Yap</span>
           </a>
@@ -394,5 +394,159 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Custom JS -->
 <script src="../assets/js/main.js"></script>
+<script>
+  // Manager Dashboard verilerini yükle
+  async function loadManagerDashboard() {
+    try {
+      document.querySelector('.content-container').style.opacity = '0.7';
+
+      const response = await AuthUtils.makeAuthenticatedRequest(`${API_BASE_URL}/dashboard/manager`);
+      const result = await response.json();
+
+      if (result.success) {
+        updateManagerStats(result.data.stats);
+        updateManagedProjects(result.data.projects);
+        updateTeamMembers(result.data.teamMembers);
+        updateTaskStatus(result.data.taskStatus);
+      }
+    } catch (error) {
+      console.error('Dashboard loading error:', error);
+      showError(document.querySelector('.content-container'), 'Dashboard verileri yüklenemedi');
+    } finally {
+      document.querySelector('.content-container').style.opacity = '1';
+    }
+  }
+
+  // Manager istatistiklerini güncelle
+  function updateManagerStats(stats) {
+    document.querySelector('.stats-card:nth-child(1) .stats-card-value').textContent = stats.managedProjects;
+    document.querySelector('.stats-card:nth-child(2) .stats-card-value').textContent = stats.teamMembers;
+    document.querySelector('.stats-card:nth-child(3) .stats-card-value').textContent = stats.pendingTasks;
+    document.querySelector('.stats-card:nth-child(4) .stats-card-value').textContent = stats.completedTasks;
+  }
+
+  // Yönetilen projeleri güncelle
+  function updateManagedProjects(projects) {
+    const projectsContainer = document.querySelector('.project-list');
+
+    if (!projects || projects.length === 0) {
+      showEmpty(projectsContainer, 'Henüz proje bulunmuyor');
+      return;
+    }
+
+    const projectsHTML = projects.map(project => {
+      const progress = project.task_count > 0 ?
+              Math.round((project.completed_tasks / project.task_count) * 100) : 0;
+
+      return `
+      <div class="project-item">
+        <div class="project-info">
+          <h6 class="project-name">
+            <a href="../projects/detail.html?id=${project.id}">${project.name}</a>
+          </h6>
+          <div class="project-details">
+            <span class="project-deadline">
+              <i class="bi bi-calendar-event"></i> Bitiş: ${formatDate(project.end_date)}
+            </span>
+            <span class="project-members">
+              <i class="bi bi-people"></i> ${project.member_count} Üye
+            </span>
+          </div>
+        </div>
+        <div class="project-progress">
+          <div class="progress" style="height: 8px;">
+            <div class="progress-bar ${progress < 30 ? 'bg-danger' : progress < 70 ? 'bg-warning' : 'bg-success'}"
+                 role="progressbar" style="width: ${progress}%;"
+                 aria-valuenow="${progress}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <small class="text-muted">${progress}% tamamlandı</small>
+        </div>
+      </div>
+    `;
+    }).join('');
+
+    projectsContainer.innerHTML = projectsHTML;
+  }
+
+  // Ekip üyelerini güncelle
+  function updateTeamMembers(members) {
+    const membersContainer = document.querySelector('.team-list');
+
+    if (!members || members.length === 0) {
+      showEmpty(membersContainer, 'Henüz ekip üyesi bulunmuyor');
+      return;
+    }
+
+    const membersHTML = members.map(member => {
+      return `
+      <div class="team-member">
+        <div class="member-avatar">
+          <span>${member.first_name.charAt(0)}</span>
+        </div>
+        <div class="member-info">
+          <h6 class="member-name">
+            <a href="../users/detail.html?id=${member.id}">${member.first_name} ${member.last_name}</a>
+          </h6>
+          <p class="member-role">${member.job_title || member.role_in_project}</p>
+        </div>
+        <div class="member-status">
+          <span class="badge bg-success">Aktif</span>
+        </div>
+      </div>
+    `;
+    }).join('');
+
+    membersContainer.innerHTML = membersHTML;
+  }
+
+  // Görev durumunu güncelle
+  function updateTaskStatus(tasks) {
+    const tasksContainer = document.querySelector('.table tbody');
+
+    if (!tasks || tasks.length === 0) {
+      tasksContainer.innerHTML = `
+      <tr>
+        <td colspan="7" class="text-center text-muted">Henüz görev bulunmuyor</td>
+      </tr>
+    `;
+      return;
+    }
+
+    const tasksHTML = tasks.map(task => {
+      return `
+      <tr>
+        <td>
+          <a href="../tasks/detail.html?id=${task.id}" class="text-primary">
+            ${task.title}
+          </a>
+        </td>
+        <td>${task.project_name}</td>
+        <td>${task.assignee_first_name || '-'} ${task.assignee_last_name || ''}</td>
+        <td>${formatDate(task.due_date)}</td>
+        <td>${getPriorityBadge(task.priority)}</td>
+        <td>${getStatusBadge(task.status, 'task')}</td>
+        <td>
+          <a href="../tasks/edit.html?id=${task.id}" class="btn btn-sm btn-primary">
+            <i class="bi bi-pencil"></i>
+          </a>
+        </td>
+      </tr>
+    `;
+    }).join('');
+
+    tasksContainer.innerHTML = tasksHTML;
+  }
+
+  // Sayfa yüklendiğinde dashboard'ı yükle
+  document.addEventListener('DOMContentLoaded', function() {
+    const currentUser = AuthUtils.getCurrentUser();
+    if (!currentUser || !['admin', 'manager'].includes(currentUser.role)) {
+      window.location.href = '/index.html';
+      return;
+    }
+
+    loadManagerDashboard();
+  });
+</script>
 </body>
 </html>

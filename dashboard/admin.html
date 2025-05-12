@@ -9,6 +9,7 @@
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
   <!-- Custom CSS -->
+
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/dashboard.css">
 </head>
@@ -48,7 +49,7 @@
           </a>
         </li>
         <li class="menu-item">
-          <a href="../index.html" id="logoutBtn">
+          <a href="#" id="logoutBtn">
             <i class="bi bi-box-arrow-right"></i>
             <span>Çıkış Yap</span>
           </a>
@@ -294,5 +295,152 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Custom JS -->
 <script src="../assets/js/main.js"></script>
+<script>
+  // Admin Dashboard verilerini yükle
+  async function loadAdminDashboard() {
+    try {
+      // Loading state
+      document.querySelector('.content-container').style.opacity = '0.7';
+
+      // API'den dashboard verilerini al
+      const response = await AuthUtils.makeAuthenticatedRequest(`${API_BASE_URL}/dashboard/admin`);
+      const result = await response.json();
+
+      if (result.success) {
+        updateDashboardStats(result.data.stats);
+        updateActivitiesList(result.data.activities);
+        updateRecentProjects(result.data.recentProjects);
+      }
+    } catch (error) {
+      console.error('Dashboard loading error:', error);
+      showError(document.querySelector('.content-container'), 'Dashboard verileri yüklenemedi');
+    } finally {
+      document.querySelector('.content-container').style.opacity = '1';
+    }
+  }
+
+  // İstatistikleri güncelle
+  function updateDashboardStats(stats) {
+    // Toplam kullanıcı
+    document.querySelector('.stats-card:nth-child(1) .stats-card-value').textContent = stats.totalUsers;
+
+    // Aktif projeler
+    document.querySelector('.stats-card:nth-child(2) .stats-card-value').textContent = stats.activeProjects;
+
+    // Bekleyen görevler
+    document.querySelector('.stats-card:nth-child(3) .stats-card-value').textContent = stats.pendingTasks;
+
+    // Tamamlanan görevler
+    document.querySelector('.stats-card:nth-child(4) .stats-card-value').textContent = stats.completedTasks;
+  }
+
+  // Aktiviteleri güncelle
+  function updateActivitiesList(activities) {
+    const activitiesContainer = document.querySelector('.activity-list');
+
+    if (!activities || activities.length === 0) {
+      showEmpty(activitiesContainer, 'Henüz aktivite bulunmuyor');
+      return;
+    }
+
+    const activitiesHTML = activities.map(activity => {
+      const icon = getActivityIcon(activity.action);
+      return `
+      <li class="activity-item">
+        <div class="activity-icon ${icon.class}">
+          <i class="${icon.icon}"></i>
+        </div>
+        <div class="activity-content">
+          <div class="activity-title">${getActivityTitle(activity.action)}</div>
+          <div class="activity-text">${activity.description}</div>
+          <div class="activity-time">${formatDateTime(activity.created_at)}</div>
+        </div>
+      </li>
+    `;
+    }).join('');
+
+    activitiesContainer.innerHTML = activitiesHTML;
+  }
+
+  // Son projeleri güncelle
+  function updateRecentProjects(projects) {
+    const projectsContainer = document.querySelector('.table tbody');
+
+    if (!projects || projects.length === 0) {
+      projectsContainer.innerHTML = `
+      <tr>
+        <td colspan="4" class="text-center text-muted">Henüz proje bulunmuyor</td>
+      </tr>
+    `;
+      return;
+    }
+
+    const projectsHTML = projects.map(project => {
+      const progress = project.task_count > 0 ?
+              Math.round((project.completed_tasks / project.task_count) * 100) : 0;
+
+      return `
+      <tr>
+        <td>
+          <a href="../projects/detail.html?id=${project.id}" class="text-primary fw-bold">
+            ${project.name}
+          </a>
+        </td>
+        <td>${project.manager_first_name} ${project.manager_last_name}</td>
+        <td>
+          <div class="progress" style="height: 5px;">
+            <div class="progress-bar ${progress < 30 ? 'bg-danger' : progress < 70 ? 'bg-warning' : 'bg-success'}"
+                 role="progressbar" style="width: ${progress}%;"
+                 aria-valuenow="${progress}" aria-valuemin="0" aria-valuemax="100">
+            </div>
+          </div>
+          <small class="text-muted">${progress}%</small>
+        </td>
+        <td>${getStatusBadge(project.status, 'project')}</td>
+      </tr>
+    `;
+    }).join('');
+
+    projectsContainer.innerHTML = projectsHTML;
+  }
+
+  // Aktivite ikonlarını getir
+  function getActivityIcon(action) {
+    const icons = {
+      'create': { class: 'bg-primary', icon: 'bi bi-plus-circle' },
+      'update': { class: 'bg-warning', icon: 'bi bi-pencil' },
+      'delete': { class: 'bg-danger', icon: 'bi bi-trash' },
+      'login': { class: 'bg-success', icon: 'bi bi-box-arrow-in-right' },
+      'logout': { class: 'bg-info', icon: 'bi bi-box-arrow-right' }
+    };
+
+    return icons[action] || icons['update'];
+  }
+
+  // Aktivite başlığını getir
+  function getActivityTitle(action) {
+    const titles = {
+      'create': 'Oluşturuldu',
+      'update': 'Güncellendi',
+      'delete': 'Silindi',
+      'login': 'Giriş Yapıldı',
+      'logout': 'Çıkış Yapıldı'
+    };
+
+    return titles[action] || 'Aktivite';
+  }
+
+  // Sayfa yüklendiğinde dashboard'ı yükle
+  document.addEventListener('DOMContentLoaded', function() {
+    // Eğer admin değilse yönlendir
+    const currentUser = AuthUtils.getCurrentUser();
+    if (!currentUser || currentUser.role !== 'admin') {
+      window.location.href = '/index.html';
+      return;
+    }
+
+    loadAdminDashboard();
+  });
+</script>
 </body>
 </html>
