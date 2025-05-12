@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Görev Takip Sistemi - Kullanıcılar</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+</head>
+<body>
+<div class="dashboard-container">
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="brand-container">
+      <div class="brand-logo">T</div>
+      <h4 class="brand-name">TaskTrack</h4>
+    </div>
+
+    <div class="menu-container">
+      <ul class="nav-menu">
+        <li class="menu-item">
+          <a href="../dashboard/admin.html">
+            <i class="bi bi-speedometer2"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="../projects/list.html">
+            <i class="bi bi-kanban"></i>
+            <span>Projeler</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="../tasks/list.html">
+            <i class="bi bi-list-task"></i>
+            <span>Görevler</span>
+          </a>
+        </li>
+        <li class="menu-item active">
+          <a href="./list.html">
+            <i class="bi bi-people"></i>
+            <span>Kullanıcılar</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="../index.html" id="logoutBtn">
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Çıkış Yap</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="bi bi-list"></i>
+      </div>
+
+      <div class="header-right">
+        <div class="notifications">
+          <i class="bi bi-bell"></i>
+          <span class="badge">3</span>
+        </div>
+
+        <div class="user-profile">
+          <div class="profile-img">
+            <span>A</span>
+          </div>
+          <div class="profile-info">
+            <span class="user-name">Admin</span>
+            <span class="user-role">Yönetici</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content Area -->
+    <div class="content-container">
+      <!-- Sayfa başlığı -->
+      <div class="content-header d-flex justify-content-between align-items-center">
+        <div>
+          <h2 class="page-title">Kullanıcılar</h2>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="../dashboard/admin.html">Ana Sayfa</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Kullanıcılar</li>
+            </ol>
+          </nav>
+        </div>
+        <div>
+          <a href="./create.html" class="btn btn-primary">
+            <i class="bi bi-plus-lg"></i> Yeni Kullanıcı
+          </a>
+        </div>
+      </div>
+
+      <!-- Filtreler -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <form class="row g-3">
+            <div class="col-md-4">
+              <label for="filterName" class="form-label">İsim veya E-posta</label>
+              <input type="text" class="form-control" id="filterName" placeholder="Ara...">
+            </div>
+            <div class="col-md-3">
+              <label for="filterRole" class="form-label">Rol</label>
+              <select class="form-select" id="filterRole">
+                <option value="">Tümü</option>
+                <option value="admin">Yönetici</option>
+                <option value="manager">Proje Yöneticisi</option>
+                <option value="member">Ekip Üyesi</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="filterProject" class="form-label">Proje</label>
+              <select class="form-select" id="filterProject">
+                <option value="">Tümü</option>
+                <option value="1">Web Sitesi Yenileme</option>
+                <option value="2">Mobil Uygulama Geliştirme</option>
+                <option value="3">Veritabanı Optimizasyonu</option>
+                <option value="4">API Entegrasyonu</option>
+              </select>
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+              <button type="submit" class="btn btn-primary w-100">Filtrele</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Kullanıcılar Tablosu -->
+      <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>Kullanıcı</th>
+                <th>E-posta</th>
+                <th>Rol</th>
+                <th>Projeler</th>
+                <th>Durum</th>
+                <th>Kayıt Tarihi</th>
+                <th>İşlemler</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <div class="avatar-sm me-3">A</div>
+                    <div>
+                      <h6 class="mb-0">Ahmet Yılmaz</h6>
+                      <small class="text-muted">Frontend Geliştirici</small>
+                    </div>
+                  </div>
+                </td>
+                <td>ahmet.yilmaz@example.com</td>
+                <td><span class="badge bg-primary">Ekip Üyesi</span></td>
+                <td>Web Sitesi Yenileme, API Entegrasyonu</td>
+                <td><span class="badge bg-success">Aktif</span></td>
+                <td>05.03.2025</td>
+                <td>
+                  <div class="dropdown">
+                    <button class="btn btn-sm btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-three-dots-vertical"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="./detail.html"><i class="bi bi-eye me-2"></i>Görüntüle</a></li>
+                      <li><a class="dropdown-item" href="./edit.html"><i class="bi bi-pencil me-2"></i>Düzenle</a></li>
+                      <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-trash me-2"></i>Sil</a></li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <div class="avatar-sm me-3">Z</div>
+                    <div>
+                      <h6 class="mb-0">Zeynep Kaya</h6>
+                      <small class="text-muted">Backend Geliştirici</small>
+                    </div>
+                  </div>
+                </td>
+                <td>zeynep.kaya@example.com</td>
+                <td><span class="badge bg-primary">Ekip Üyesi</span></td>
+                <td>API Entegrasyonu, Veritabanı Optimizasyonu</td>
+                <td><span class="badge bg-success">Aktif</span></td>
+                <td>10.02.2025</td>
+                <td>
+                  <div class="dropdown">
+                    <button class="btn btn-sm btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-three-dots-vertical"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="./detail.html"><i class="bi bi-eye me-2"></i>Görüntüle</a></li>
+                      <li><a class="dropdown-item" href="./edit.html"><i class="bi bi-pencil me-2"></i>Düzenle</a></li>
+                      <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-trash me-2"></i>Sil</a></li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <div class="avatar-sm me-3">M</div>
+                    <div>
+                      <h6 class="mb-0">Mehmet Aydın</h6>
+                      <small class="text-muted">Yazılım Mimarı</small>
+                    </div>
+                  </div>
+                </td>
+                <td>mehmet.aydin@example.com</td>
+                <td><span class="badge bg-warning">Proje Yöneticisi</span></td>
+                <td>Web Sitesi Yenileme</td>
+                <td><span class="badge bg-success">Aktif</span></td>
+                <td>15.01.2025</td>
+                <td>
+                  <div class="dropdown">
+                    <button class="btn btn-sm btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-three-dots-vertical"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="./detail.html"><i class="bi bi-eye me-2"></i>Görüntüle</a></li>
+                      <li><a class="dropdown-item" href="./edit.html"><i class="bi bi-pencil me-2"></i>Düzenle</a></li>
+                      <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-trash me-2"></i>Sil</a></li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <div class="avatar-sm me-3">A</div>
+                    <div>
+                      <h6 class="mb-0">Ayşe Kaya</h6>
+                      <small class="text-muted">Mobil Geliştirici</small>
+                    </div>
+                  </div>
+                </td>
+                <td>ayse.kaya@example.com</td>
+                <td><span class="badge bg-warning">Proje Yöneticisi</span></td>
+                <td>Mobil Uygulama Geliştirme</td>
+                <td><span class="badge bg-success">Aktif</span></td>
+                <td>20.02.2025</td>
+                <td>
+                  <div class="dropdown">
+                    <button class="btn btn-sm btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-three-dots-vertical"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="./detail.html"><i class="bi bi-eye me-2"></i>Görüntüle</a></li>
+                      <li><a class="dropdown-item" href="./edit.html"><i class="bi bi-pencil me-2"></i>Düzenle</a></li>
+                      <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-trash me-2"></i>Sil</a></li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <div class="avatar-sm me-3">A</div>
+                    <div>
+                      <h6 class="mb-0">Admin</h6>
+                      <small class="text-muted">Sistem Yöneticisi</small>
+                    </div>
+                  </div>
+                </td>
+                <td>admin@example.com</td>
+                <td><span class="badge bg-danger">Yönetici</span></td>
+                <td>Tüm Projeler</td>
+                <td><span class="badge bg-success">Aktif</span></td>
+                <td>01.01.2025</td>
+                <td>
+                  <div class="dropdown">
+                    <button class="btn btn-sm btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-three-dots-vertical"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="./detail.html"><i class="bi bi-eye me-2"></i>Görüntüle</a></li>
+                      <li><a class="dropdown-item" href="./edit.html"><i class="bi bi-pencil me-2"></i>Düzenle</a></li>
+                      <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-trash me-2"></i>Sil</a></li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination -->
+          <nav aria-label="Page navigation" class="mt-4">
+            <ul class="pagination justify-content-center">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Önceki</a>
+              </li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#">Sonraki</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+      <p>&copy; 2025 Görev Takip Sistemi. Tüm hakları saklıdır.</p>
+    </footer>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS -->
+<script src="../assets/js/main.js"></script>
+
+<!-- Sayfaya özel stil tanımlamaları -->
+<style>
+  .avatar-sm {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+  }
+</style>
+</body>
+</html><td>ayse.kaya@example.com</td>
+<td><span class="badge bg-warning">Proje Yöneticisi</span></td>
+<td>Mobil Uygulama Geliştirme</td>
+<td><span class="badge bg-success">Aktif</span></td>
+<td>20.02.2025</td>
+<td>
+  <div class="dropdown">
+    <button class="btn btn-sm btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-three-dots-vertical"></i>
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="./detail.html"><i class="bi bi-eye me-2"></i>Görüntüle</a></li>
+      <li><a class="dropdown-item" href="./edit.html"><i class="bi bi-pencil me-2"></i>Düzenle</a></li>
+      <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-trash me-2"></i>Sil</a></li>
+    </ul>
+  </div>
+</td>
+</tr>
+<tr>
+  <td>
+    <div class="d-flex align-items-center">
+      <div class="avatar-sm me-3">A</div>
+      <div>
+        <h6 class="mb-0">Admin</h6>
+        <small class="text-muted">Sistem Yöneticisi</small>
+      </div>
+    </div>
+  </td>
+  <td>admin@example.com</td>
+  <td><span class="badge bg-danger">Yönetici</span></td>
+  <td>Tüm Projeler</td>
+  <td><span class="badge bg-success">Aktif</span></td>
+  <td>01.01.2025</td>
+  <td>
+    <div class="dropdown">
+      <button class="btn btn-sm btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-three-dots-vertical"></i>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="./detail.html"><i class="bi bi-eye me-2"></i>Görüntüle</a></li>
+        <li><a class="dropdown-item" href="./edit.html"><i class="bi bi-pencil me-2"></i>Düzenle</a></li>
+        <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-trash me-2"></i>Sil</a></li>
+      </ul>
+    </div>
+  </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<!-- Pagination -->
+<nav aria-label="Page navigation" class="mt-4">
+  <ul class="pagination justify-content-center">
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Önceki</a>
+    </li>
+    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Sonraki</a>
+    </li>
+  </ul>
+</nav>
+</div>
+</div>
+</div>
+
+<!-- Footer -->
+<footer class="dashboar

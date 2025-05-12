@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Görev Takip Sistemi - Etkinlikler</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body>
+<div class="dashboard-container">
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="brand-container">
+      <div class="brand-logo">T</div>
+      <h4 class="brand-name">TaskTrack</h4>
+    </div>
+
+    <div class="menu-container">
+      <ul class="nav-menu">
+        <li class="menu-item">
+          <a href="./dashboard/admin.html">
+            <i class="bi bi-speedometer2"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="./projects/list.html">
+            <i class="bi bi-kanban"></i>
+            <span>Projeler</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="./tasks/list.html">
+            <i class="bi bi-list-task"></i>
+            <span>Görevler</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="./users/list.html">
+            <i class="bi bi-people"></i>
+            <span>Kullanıcılar</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="./index.html" id="logoutBtn">
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Çıkış Yap</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="bi bi-list"></i>
+      </div>
+
+      <div class="header-right">
+        <div class="notifications">
+          <i class="bi bi-bell"></i>
+          <span class="badge">3</span>
+        </div>
+
+        <div class="user-profile">
+          <div class="profile-img">
+            <span>A</span>
+          </div>
+          <div class="profile-info">
+            <span class="user-name">Admin</span>
+            <span class="user-role">Yönetici</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content Area -->
+    <div class="content-container">
+      <!-- Sayfa başlığı -->
+      <div class="content-header">
+        <h2 class="page-title">Sistem Etkinlikleri</h2>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="./dashboard/admin.html">Ana Sayfa</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Etkinlikler</li>
+          </ol>
+        </nav>
+      </div>
+
+      <!-- Filtreler -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <form class="row g-3">
+            <div class="col-md-3">
+              <label for="filterType" class="form-label">Etkinlik Tipi</label>
+              <select class="form-select" id="filterType">
+                <option value="">Tümü</option>
+                <option value="user">Kullanıcı Etkinlikleri</option>
+                <option value="project">Proje Etkinlikleri</option>
+                <option value="task">Görev Etkinlikleri</option>
+                <option value="system">Sistem Etkinlikleri</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="filterUser" class="form-label">Kullanıcı</label>
+              <select class="form-select" id="filterUser">
+                <option value="">Tüm Kullanıcılar</option>
+                <option value="1">Ahmet Yılmaz</option>
+                <option value="2">Zeynep Kaya</option>
+                <option value="3">Mehmet Demir</option>
+                <option value="4">Elif Şahin</option>
+                <option value="5">Admin</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label for="filterDateRange" class="form-label">Tarih Aralığı</label>
+              <div class="input-group">
+                <input type="date" class="form-control" id="filterDateStart">
+                <span class="input-group-text">-</span>
+                <input type="date" class="form-control" id="filterDateEnd">
+              </div>
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+              <button type="submit" class="btn btn-primary w-100">Filtrele</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Etkinlikler Listesi -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <ul class="activity-list">
+            <li class="activity-item">
+              <div class="activity-icon bg-primary">
+                <i class="bi bi-person-plus"></i>
+              </div>
+              <div class="activity-content">
+                <div class="activity-title">Yeni Kullanıcı</div>
+                <div class="activity-text">Ahmet Yılmaz sisteme kayıt oldu</div>
+                <div class="activity-time">Bugün, 14:45</div>
+              </div>
+            </li>
+
+            <li class="activity-item">
+              <div class="activity-icon bg-success">
+                <i class="bi bi-check-circle"></i>
+              </div>
+              <div class="activity-content">
+                <div class="activity-title">Görev Tamamlandı</div>
+                <div class="activity-text">Frontend geliştirme görevi tamamlandı</div>
+                <div class="activity-time">Bugün, 12:30</div>
+              </div>
+            </li>
+
+            <li class="activity-item">
+              <div class="activity-icon bg-warning">
+                <i class="bi bi-exclamation-circle"></i>
+              </div>
+              <div class="activity-content">
+                <div class="activity-title">Görev Güncellendi</div>
+                <div class="activity-text">Veritabanı optimizasyonu ertelendi</div>
+                <div class="activity-time">Dün, 16:20</div>
+              </div>
+            </li>
+
+            <li class="activity-item">
+              <div class="activity-icon bg-info">
+                <i class="bi bi-plus-circle"></i>
+              </div>
+              <div class="activity-content">
+                <div class="activity-title">Yeni Proje</div>
+                <div class="activity-text">E-ticaret platformu projesi oluşturuldu</div>
+                <div class="activity-time">Dün, 09:15</div>
+              </div>
+            </li>
+
+            <li class="activity-item">
+              <div class="activity-icon bg-primary">
+                <i class="bi bi-person-check"></i>
+              </div>
+              <div class="activity-content">
+                <div class="activity-title">Kullanıcı Rolü Değişti</div>
+                <div class="activity-text">Zeynep Kaya'nın rolü Ekip Üyesi'nden Proje Yöneticisi'ne yükseltildi</div>
+                <div class="activity-time">2 gün önce, 15:30</div>
+              </div>
+            </li>
+
+            <li class="activity-item">
+              <div class="activity-icon bg-danger">
+                <i class="bi bi-trash"></i>
+              </div>
+              <div class="activity-content">
+                <div class="activity-title">Görev Silindi</div>
+                <div class="activity-text">Admin "Test Görevi" görevini sildi</div>
+                <div class="activity-time">2 gün önce, 14:10</div>
+              </div>
+            </li>
+
+            <li class="activity-item">
+              <div class="activity-icon bg-success">
+                <i class="bi bi-check-circle"></i>
+              </div>
+              <div class="activity-content">
+                <div class="activity-title">Görev Tamamlandı</div>
+                <div class="activity-text">Mehmet Demir "Tasarım Dokümanı" görevini tamamladı</div>
+                <div class="activity-time">3 gün önce, 10:45</div>
+              </div>
+            </li>
+
+            <li class="activity-item">
+              <div class="activity-icon bg-primary">
+                <i class="bi bi-plus-circle"></i>
+              </div>
+              <div class="activity-content">
+                <div class="activity-title">Yeni Görev</div>
+                <div class="activity-text">Web Sitesi Yenileme projesine 3 yeni görev eklendi</div>
+                <div class="activity-time">3 gün önce, 09:20</div>
+              </div>
+            </li>
+
+            <li class="activity-item">
+              <div class="activity-icon bg-secondary">
+                <i class="bi bi-people"></i>
+              </div>
+              <div class="activity-content">
+                <div class="activity-title">Ekip Üyesi Eklendi</div>
+                <div class="activity-text">Elif Şahin, Mobil Uygulama Geliştirme projesine eklendi</div>
+                <div class="activity-time">4 gün önce, 16:15</div>
+              </div>
+            </li>
+
+            <li class="activity-item">
+              <div class="activity-icon bg-success">
+                <i class="bi bi-graph-up"></i>
+              </div>
+              <div class="activity-content">
+                <div class="activity-title">Proje İlerlemesi</div>
+                <div class="activity-text">Web Sitesi Yenileme projesi %50'den %75'e ilerledi</div>
+                <div class="activity-time">4 gün önce, 14:30</div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Pagination -->
+          <nav aria-label="Page navigation" class="mt-4">
+            <ul class="pagination justify-content-center">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Önceki</a>
+              </li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#">Sonraki</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+      <p>&copy; 2025 Görev Takip Sistemi. Tüm hakları saklıdır.</p>
+    </footer>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS -->
+<script src="assets/js/main.js"></script>
+</body>
+</html>

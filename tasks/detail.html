@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Görev Takip Sistemi - Görev Detayları</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+</head>
+<body>
+<div class="dashboard-container">
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="brand-container">
+      <div class="brand-logo">T</div>
+      <h4 class="brand-name">TaskTrack</h4>
+    </div>
+
+    <div class="menu-container">
+      <ul class="nav-menu">
+        <li class="menu-item">
+          <a href="../dashboard/admin.html">
+            <i class="bi bi-speedometer2"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="../projects/list.html">
+            <i class="bi bi-kanban"></i>
+            <span>Projeler</span>
+          </a>
+        </li>
+        <li class="menu-item active">
+          <a href="./list.html">
+            <i class="bi bi-list-task"></i>
+            <span>Görevler</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="../users/list.html">
+            <i class="bi bi-people"></i>
+            <span>Kullanıcılar</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="../index.html" id="logoutBtn">
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Çıkış Yap</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="bi bi-list"></i>
+      </div>
+
+      <div class="header-right">
+        <div class="notifications">
+          <i class="bi bi-bell"></i>
+          <span class="badge">3</span>
+        </div>
+
+        <div class="user-profile">
+          <div class="profile-img">
+            <span>A</span>
+          </div>
+          <div class="profile-info">
+            <span class="user-name">Admin</span>
+            <span class="user-role">Yönetici</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content Area -->
+    <div class="content-container">
+      <!-- Sayfa başlığı -->
+      <div class="content-header d-flex justify-content-between align-items-center">
+        <div>
+          <h2 class="page-title">Görev Detayları</h2>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="../dashboard/admin.html">Ana Sayfa</a></li>
+              <li class="breadcrumb-item"><a href="./list.html">Görevler</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Görev Detayları</li>
+            </ol>
+          </nav>
+        </div>
+        <div>
+          <a href="./edit.html?id=1" class="btn btn-primary me-2">
+            <i class="bi bi-pencil"></i> Düzenle
+          </a>
+          <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteTaskModal">
+            <i class="bi bi-trash"></i> Sil
+          </button>
+        </div>
+      </div>
+
+      <!-- Görev Detay Kartı -->
+      <div class="row">
+        <!-- Görev Özeti -->
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title border-bottom pb-3">Görev Bilgileri</h5>
+
+              <div class="mb-4">
+                <h4>Ana Sayfa Tasarımı</h4>
+                <p class="text-muted">Web sitesi ana sayfasının yeniden tasarımı</p>
+                <span class="badge bg-success">Tamamlandı</span>
+              </div>
+
+              <div class="mb-3">
+                <div class="row">
+                  <div class="col-md-6">
+                    <small class="text-muted d-block">Oluşturma Tarihi</small>
+                    <p class="mb-2">10.05.2025</p>
+                  </div>
+                  <div class="col-md-6">
+                    <small class="text-muted d-block">Son Tarih</small>
+                    <p class="mb-2">20.05.2025</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <small class="text-muted d-block">Proje</small>
+                <p class="mb-2"><a href="../projects/detail.html">Web Sitesi Yenileme</a></p>
+              </div>
+
+              <div class="mb-3">
+                <small class="text-muted d-block">Atanan Kişi</small>
+                <div class="d-flex align-items-center">
+                  <div class="avatar-sm me-2">A</div>
+                  <a href="../users/detail.html">Ahmet Yılmaz</a>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <small class="text-muted d-block">İlerleme</small>
+                <div class="progress mt-1 mb-1" style="height: 8px;">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <small>%100 tamamlandı</small>
+              </div>
+
+              <div class="mb-3">
+                <small class="text-muted d-block">Öncelik</small>
+                <span class="badge bg-danger">Yüksek</span>
+              </div>
+
+              <div class="mb-3">
+                <small class="text-muted d-block">Etiketler</small>
+                <div>
+                  <span class="badge bg-primary">Frontend</span>
+                  <span class="badge bg-primary">UI/UX</span>
+                  <span class="badge bg-primary">Design</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Görev Detayları -->
+        <div class="col-md-8 mb-4">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title border-bottom pb-3">Görev Açıklaması</h5>
+              <p>Bu görev, şirketimizin kurumsal web sitesinin ana sayfasının modern bir tasarımla yeniden geliştirilmesini kapsamaktadır. Kullanıcı deneyimini iyileştirmek ve site çekiciliğini artırmak amaçlanmaktadır.</p>
+
+              <p>Aşağıdaki temel gereksinimler belirlenmiştir:</p>
+              <ul>
+                <li>Modern, responsive ve kullanıcı dostu bir arayüz tasarımı</li>
+                <li>Şirket kimliğine uygun renk şeması kullanımı</li>
+                <li>Öne çıkan hizmetlerin görsel olarak etkili bir şekilde sunumu</li>
+                <li>İletişim bilgileri ve iletişim formunun kolay erişilebilir olması</li>
+                <li>Mobil cihazlar için optimize edilmiş görünüm</li>
+              </ul>
+
+              <p>Tasarım HTML5, CSS3 ve JavaScript kullanılarak oluşturulacak olup, Bootstrap framework'ü kullanılacaktır.</p>
+            </div>
+          </div>
+
+          <!-- Ekler -->
+          <div class="card mb-4">
+            <div class="card-header">
+              <h5 class="card-title mb-0">Ekler</h5>
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <div>
+                    <i class="bi bi-file-earmark-image me-2"></i>
+                    <span>design_mockup.jpg</span>
+                  </div>
+                  <div>
+                    <a href="#" class="btn btn-sm btn-outline-primary me-1"><i class="bi bi-eye"></i></a>
+                    <a href="#" class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i></a>
+                  </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <div>
+                    <i class="bi bi-file-earmark-text me-2"></i>
+                    <span>requirements.pdf</span>
+                  </div>
+                  <div>
+                    <a href="#" class="btn btn-sm btn-outline-primary me-1"><i class="bi bi-eye"></i></a>
+                    <a href="#" class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i></a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Yorumlar -->
+          <div class="card mb-4">
+            <div class="card-header">
+              <h5 class="card-title mb-0">Yorumlar</h5>
+            </div>
+            <div class="card-body">
+              <ul class="comment-list">
+                <li class="comment-item">
+                  <div class="comment-avatar">
+                    <span>M</span>
+                  </div>
+                  <div class="comment-content">
+                    <div class="comment-header">
+                      <h6 class="comment-author">Mehmet Aydın</h6>
+                      <small class="comment-date text-muted">18.05.2025, 15:30</small>
+                    </div>
+                    <div class="comment-text">
+                      <p class="mb-0">Tebrikler, ana sayfa tasarımı çok güzel olmuş. Mobil versiyonda renklerin biraz daha canlı olmasını önerebilirim.</p>
+                    </div>
+                  </div>
+                </li>
+                <li class="comment-item">
+                  <div class="comment-avatar">
+                    <span>A</span>
+                  </div>
+                  <div class="comment-content">
+                    <div class="comment-header">
+                      <h6 class="comment-author">Ahmet Yılmaz</h6>
+                      <small class="comment-date text-muted">18.05.2025, 16:45</small>
+                    </div>
+                    <div class="comment-text">
+                      <p class="mb-0">Teşekkürler, mobil versiyon renklerini iyileştireceğim. Son düzenlemeleri yapıp tasarımı tamamlayacağım.</p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+
+              <div class="comment-form mt-4">
+                <form>
+                  <div class="mb-3">
+                    <label for="commentText" class="form-label">Yorum Ekle</label>
+                    <textarea class="form-control" id="commentText" rows="3" placeholder="Yorumunuzu yazın..."></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Gönder</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Görev Geçmişi -->
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Görev Geçmişi</h5>
+        </div>
+        <div class="card-body">
+          <ul class="activity-list">
+            <li class="activity-item">
+              <div class="activity-icon bg-success">
+                <i class="bi bi-check-circle"></i>
+              </div>
+              <div class="activity-content">
+                <div class="activity-title">Görev Tamamlandı</div>
+                <div class="activity-text">Ahmet Yılmaz görevi tamamladı</div>
+                <div class="activity-time">18.05.2025, 17:30</div>
+              </div>
+            </li>
+            <li class="activity-item">
+              <div class="activity-icon bg-warning">
+                <i class="bi bi-pencil"></i>
+              </div>
+              <div class="activity-content">
+                <div class="activity-title">Görev Güncellendi</div>
+                <div class="activity-text">Mehmet Aydın önceliği "Orta"dan "Yüksek"e değiştirdi</div>
+                <div class="activity-time">15.05.2025, 10:15</div>
+              </div>
+            </li>
+            <li class="activity-item">
+              <div class="activity-icon bg-primary">
+                <i class="bi bi-person"></i>
+              </div>
+              <div class="activity-content">
+                <div class="activity-title">Görev Atandı</div>
+                <div class="activity-text">Görev Ahmet Yılmaz'a atandı</div>
+                <div class="activity-time">10.05.2025, 09:30</div>
+              </div>
+            </li>
+            <li class="activity-item">
+              <div class="activity-icon bg-info">
+                <i class="bi bi-plus-circle"></i>
+              </div>
+              <div class="activity-content">
+                <div class="activity-title">Görev Oluşturuldu</div>
+                <div class="activity-text">Mehmet Aydın tarafından oluşturuldu</div>
+                <div class="activity-time">10.05.2025, 09:00</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+      <p>&copy; 2025 Görev Takip Sistemi. Tüm hakları saklıdır.</p>
+    </footer>
+  </div>
+</div>
+
+<!-- Görev Silme Modal -->
+<div class="modal fade" id="deleteTaskModal" tabindex="-1" aria-labelledby="deleteTaskModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteTaskModalLabel">Görevi Sil</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-0">Ana Sayfa Tasarımı görevini silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+        <button type="button" class="btn btn-danger">Görevi Sil</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS -->
+<script src="../assets/js/main.js"></script>
+
+<!-- Sayfa özel stil tanımlamaları -->
+<style>
+  .avatar-sm {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .comment-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .comment-item {
+    display: flex;
+    margin-bottom: 20px;
+  }
+
+  .comment-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 15px;
+    flex-shrink: 0;
+  }
+
+  .comment-content {
+    flex: 1;
+  }
+
+  .comment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+  }
+
+  .comment-author {
+    margin: 0;
+    font-size: 16px;
+  }
+
+  .comment-text p {
+    margin-bottom: 0;
+  }
+</style>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Görev Takip Sistemi - Proje Yöneticisi</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+</head>
+<body>
+<div class="dashboard-container">
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="brand-container">
+      <div class="brand-logo">T</div>
+      <h4 class="brand-name">TaskTrack</h4>
+    </div>
+
+    <div class="menu-container">
+      <ul class="nav-menu">
+        <li class="menu-item active">
+          <a href="./manager.html">
+            <i class="bi bi-speedometer2"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="../projects/list.html">
+            <i class="bi bi-kanban"></i>
+            <span>Projelerim</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="../tasks/list.html">
+            <i class="bi bi-list-task"></i>
+            <span>Görevler</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="../users/list.html">
+            <i class="bi bi-people"></i>
+            <span>Ekip Üyeleri</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="../index.html" id="logoutBtn">
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Çıkış Yap</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="bi bi-list"></i>
+      </div>
+
+      <div class="header-right">
+        <div class="notifications">
+          <i class="bi bi-bell"></i>
+          <span class="badge">5</span>
+        </div>
+
+        <div class="user-profile">
+          <div class="profile-img">
+            <span>M</span>
+          </div>
+          <div class="profile-info">
+            <span class="user-name">Manager</span>
+            <span class="user-role">Proje Yöneticisi</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content Area -->
+    <div class="content-container">
+      <!-- Sayfa başlığı -->
+      <div class="content-header">
+        <h2 class="page-title">Proje Yöneticisi Paneli</h2>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Ana Sayfa</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+          </ol>
+        </nav>
+      </div>
+
+      <!-- İstatistik Kartları -->
+      <div class="row">
+        <div class="col-md-6 col-lg-3 mb-4">
+          <div class="stats-card">
+            <div class="stats-card-body">
+              <div class="stats-card-icon bg-success">
+                <i class="bi bi-kanban-fill"></i>
+              </div>
+              <div class="stats-card-content">
+                <h5 class="stats-card-title">Aktif Projeler</h5>
+                <h3 class="stats-card-value">3</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 mb-4">
+          <div class="stats-card">
+            <div class="stats-card-body">
+              <div class="stats-card-icon bg-primary">
+                <i class="bi bi-people-fill"></i>
+              </div>
+              <div class="stats-card-content">
+                <h5 class="stats-card-title">Toplam Ekip Üyesi</h5>
+                <h3 class="stats-card-value">12</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 mb-4">
+          <div class="stats-card">
+            <div class="stats-card-body">
+              <div class="stats-card-icon bg-warning">
+                <i class="bi bi-list-task"></i>
+              </div>
+              <div class="stats-card-content">
+                <h5 class="stats-card-title">Bekleyen Görevler</h5>
+                <h3 class="stats-card-value">8</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 mb-4">
+          <div class="stats-card">
+            <div class="stats-card-body">
+              <div class="stats-card-icon bg-info">
+                <i class="bi bi-check-circle-fill"></i>
+              </div>
+              <div class="stats-card-content">
+                <h5 class="stats-card-title">Tamamlanan Görevler</h5>
+                <h3 class="stats-card-value">21</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projeler ve Ekip Üyeleri -->
+      <div class="row">
+        <!-- Projeler -->
+        <div class="col-lg-6 mb-4">
+          <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h5 class="card-title mb-0">Yönettiğim Projeler</h5>
+              <a href="../projects/list.html" class="btn btn-sm btn-primary">
+                <i class="bi bi-plus"></i> Yeni Proje
+              </a>
+            </div>
+            <div class="card-body">
+              <div class="project-list">
+                <!-- Proje 1 -->
+                <div class="project-item">
+                  <div class="project-info">
+                    <h6 class="project-name">Web Sitesi Yenileme</h6>
+                    <div class="project-details">
+                                                <span class="project-deadline">
+                                                    <i class="bi bi-calendar-event"></i> Bitiş: 15 Haziran 2025
+                                                </span>
+                      <span class="project-members">
+                                                    <i class="bi bi-people"></i> 5 Üye
+                                                </span>
+                    </div>
+                  </div>
+                  <div class="project-progress">
+                    <div class="progress" style="height: 8px;">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <small class="text-muted">75% tamamlandı</small>
+                  </div>
+                </div>
+
+                <!-- Proje 2 -->
+                <div class="project-item">
+                  <div class="project-info">
+                    <h6 class="project-name">Mobil Uygulama Geliştirme</h6>
+                    <div class="project-details">
+                                                <span class="project-deadline">
+                                                    <i class="bi bi-calendar-event"></i> Bitiş: 30 Temmuz 2025
+                                                </span>
+                      <span class="project-members">
+                                                    <i class="bi bi-people"></i> 4 Üye
+                                                </span>
+                    </div>
+                  </div>
+                  <div class="project-progress">
+                    <div class="progress" style="height: 8px;">
+                      <div class="progress-bar bg-warning" role="progressbar" style="width: 45%;" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <small class="text-muted">45% tamamlandı</small>
+                  </div>
+                </div>
+
+                <!-- Proje 3 -->
+                <div class="project-item">
+                  <div class="project-info">
+                    <h6 class="project-name">API Entegrasyonu</h6>
+                    <div class="project-details">
+                                                <span class="project-deadline">
+                                                    <i class="bi bi-calendar-event"></i> Bitiş: 10 Haziran 2025
+                                                </span>
+                      <span class="project-members">
+                                                    <i class="bi bi-people"></i> 3 Üye
+                                                </span>
+                    </div>
+                  </div>
+                  <div class="project-progress">
+                    <div class="progress" style="height: 8px;">
+                      <div class="progress-bar bg-info" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <small class="text-muted">60% tamamlandı</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ekip Üyeleri -->
+        <div class="col-lg-6 mb-4">
+          <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h5 class="card-title mb-0">Ekip Üyeleri</h5>
+              <a href="../users/list.html" class="btn btn-sm btn-primary">Tümünü Gör</a>
+            </div>
+            <div class="card-body">
+              <div class="team-list">
+                <!-- Üye 1 -->
+                <div class="team-member">
+                  <div class="member-avatar">
+                    <span>A</span>
+                  </div>
+                  <div class="member-info">
+                    <h6 class="member-name">Ahmet Yılmaz</h6>
+                    <p class="member-role">Frontend Geliştirici</p>
+                  </div>
+                  <div class="member-status">
+                    <span class="badge bg-success">Aktif</span>
+                  </div>
+                </div>
+
+                <!-- Üye 2 -->
+                <div class="team-member">
+                  <div class="member-avatar">
+                    <span>Z</span>
+                  </div>
+                  <div class="member-info">
+                    <h6 class="member-name">Zeynep Kaya</h6>
+                    <p class="member-role">Backend Geliştirici</p>
+                  </div>
+                  <div class="member-status">
+                    <span class="badge bg-info">Görevde</span>
+                  </div>
+                </div>
+
+                <!-- Üye 3 -->
+                <div class="team-member">
+                  <div class="member-avatar">
+                    <span>M</span>
+                  </div>
+                  <div class="member-info">
+                    <h6 class="member-name">Mehmet Demir</h6>
+                    <p class="member-role">UI/UX Tasarımcı</p>
+                  </div>
+                  <div class="member-status">
+                    <span class="badge bg-warning">İzinde</span>
+                  </div>
+                </div>
+
+                <!-- Üye 4 -->
+                <div class="team-member">
+                  <div class="member-avatar">
+                    <span>E</span>
+                  </div>
+                  <div class="member-info">
+                    <h6 class="member-name">Elif Şahin</h6>
+                    <p class="member-role">Mobil Geliştirici</p>
+                  </div>
+                  <div class="member-status">
+                    <span class="badge bg-success">Aktif</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Görev Durumu -->
+      <div class="row">
+        <div class="col-12 mb-4">
+          <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h5 class="card-title mb-0">Görev Durumu</h5>
+              <a href="../tasks/list.html" class="btn btn-sm btn-primary">
+                <i class="bi bi-plus"></i> Yeni Görev
+              </a>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                  <tr>
+                    <th>Görev Adı</th>
+                    <th>Proje</th>
+                    <th>Atanan Kişi</th>
+                    <th>Son Tarih</th>
+                    <th>Öncelik</th>
+                    <th>Durum</th>
+                    <th>İşlem</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>Ana Sayfa Tasarımı</td>
+                    <td>Web Sitesi Yenileme</td>
+                    <td>Ahmet Yılmaz</td>
+                    <td>20 Mayıs 2025</td>
+                    <td><span class="badge bg-danger">Yüksek</span></td>
+                    <td><span class="badge bg-success">Tamamlandı</span></td>
+                    <td>
+                      <a href="#" class="btn btn-sm btn-primary"><i class="bi bi-pencil"></i></a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>API Endpoint Geliştirme</td>
+                    <td>API Entegrasyonu</td>
+                    <td>Zeynep Kaya</td>
+                    <td>25 Mayıs 2025</td>
+                    <td><span class="badge bg-warning">Orta</span></td>
+                    <td><span class="badge bg-warning">Devam Ediyor</span></td>
+                    <td>
+                      <a href="#" class="btn btn-sm btn-primary"><i class="bi bi-pencil"></i></a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Kullanıcı Arayüzü Tasarımı</td>
+                    <td>Mobil Uygulama Geliştirme</td>
+                    <td>Mehmet Demir</td>
+                    <td>1 Haziran 2025</td>
+                    <td><span class="badge bg-info">Normal</span></td>
+                    <td><span class="badge bg-secondary">Beklemede</span></td>
+                    <td>
+                      <a href="#" class="btn btn-sm btn-primary"><i class="bi bi-pencil"></i></a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Mobil Uygulama Testi</td>
+                    <td>Mobil Uygulama Geliştirme</td>
+                    <td>Elif Şahin</td>
+                    <td>10 Haziran 2025</td>
+                    <td><span class="badge bg-danger">Yüksek</span></td>
+                    <td><span class="badge bg-info">Planlı</span></td>
+                    <td>
+                      <a href="#" class="btn btn-sm btn-primary"><i class="bi bi-pencil"></i></a>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+      <p>&copy; 2025 Görev Takip Sistemi. Tüm hakları saklıdır.</p>
+    </footer>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS -->
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

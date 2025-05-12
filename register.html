@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Görev Takip Sistemi - Kayıt Ol</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/login.css">
+  <!-- Kayıt Sayfası için özel stil -->
+  <style>
+    .register-card {
+      max-width: 500px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="login-container">
+    <div class="login-card register-card">
+      <h2 class="text-center mb-4">Kayıt Ol</h2>
+
+      <div class="logo-container text-center mb-4">
+        <div class="logo-badge">T</div>
+      </div>
+
+      <form id="registerForm">
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="firstName" class="form-label">Ad</label>
+            <input type="text" class="form-control" id="firstName" placeholder="Adınız" required>
+          </div>
+          <div class="col-md-6">
+            <label for="lastName" class="form-label">Soyad</label>
+            <input type="text" class="form-control" id="lastName" placeholder="Soyadınız" required>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="ornek@email.com" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="username" class="form-label">Kullanıcı Adı</label>
+          <input type="text" class="form-control" id="username" placeholder="kullanici_adi" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Şifre</label>
+          <div class="input-group">
+            <input type="password" class="form-control" id="password" required>
+            <span class="input-group-text password-toggle">
+                                <i class="bi bi-eye"></i>
+                            </span>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="confirmPassword" class="form-label">Şifre Tekrar</label>
+          <div class="input-group">
+            <input type="password" class="form-control" id="confirmPassword" required>
+            <span class="input-group-text password-toggle">
+                                <i class="bi bi-eye"></i>
+                            </span>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="jobTitle" class="form-label">Pozisyon / Ünvan</label>
+          <input type="text" class="form-control" id="jobTitle" placeholder="Örn: Frontend Geliştirici">
+        </div>
+
+        <div class="mb-4 form-check">
+          <input type="checkbox" class="form-check-input" id="termsCheck" required>
+          <label class="form-check-label" for="termsCheck">
+            <small>Kullanım şartlarını ve gizlilik politikasını kabul ediyorum</small>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 login-btn">KAYIT OL</button>
+      </form>
+
+      <div class="text-center mt-4">
+        <p>Zaten hesabınız var mı? <a href="index.html" class="signup-link">Giriş Yap</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+<!-- Custom JS -->
+<script src="assets/js/auth.js"></script>
+
+<!-- Kayıt işlemleri için JavaScript -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const registerForm = document.getElementById('registerForm');
+
+    // Form submit olayını yakala
+    if (registerForm) {
+      registerForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Şifre kontrolü
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        if (password !== confirmPassword) {
+          alert('Şifreler eşleşmiyor!');
+          return;
+        }
+
+        // Form verilerini al
+        const userData = {
+          firstName: document.getElementById('firstName').value,
+          lastName: document.getElementById('lastName').value,
+          email: document.getElementById('email').value,
+          username: document.getElementById('username').value,
+          password: password,
+          jobTitle: document.getElementById('jobTitle').value,
+        };
+
+        // Normalde burada bir API'ye POST isteği yapılır
+        console.log('Kullanıcı Verileri:', userData);
+
+        // Başarılı kayıt sonrası login sayfasına yönlendirilir
+        alert('Kayıt işlemi başarılı! Giriş yapabilirsiniz.');
+        window.location.href = 'index.html';
+      });
+    }
+
+    // Şifre görünürlüğü toggle işlemleri
+    const passwordToggles = document.querySelectorAll('.password-toggle');
+
+    passwordToggles.forEach(toggle => {
+      toggle.addEventListener('click', function() {
+        const passwordField = this.previousElementSibling;
+        const icon = this.querySelector('i');
+
+        if (passwordField.type === 'password') {
+          passwordField.type = 'text';
+          icon.classList.remove('bi-eye');
+          icon.classList.add('bi-eye-slash');
+        } else {
+          passwordField.type = 'password';
+          icon.classList.remove('bi-eye-slash');
+          icon.classList.add('bi-eye');
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>
