@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Görev Takip Sistemi - Profilim</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+</head>
+<body>
+<div class="dashboard-container">
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="brand-container">
+      <div class="brand-logo">T</div>
+      <h4 class="brand-name">TaskTrack</h4>
+    </div>
+
+    <div class="menu-container">
+      <ul class="nav-menu">
+        <li class="menu-item">
+          <a href="../dashboard/member.html">
+            <i class="bi bi-speedometer2"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="../tasks/my-tasks.html">
+            <i class="bi bi-list-task"></i>
+            <span>Görevlerim</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="../projects/my-projects.html">
+            <i class="bi bi-kanban"></i>
+            <span>Projelerim</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="../index.html" id="logoutBtn">
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Çıkış Yap</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="bi bi-list"></i>
+      </div>
+
+      <div class="header-right">
+        <div class="notifications">
+          <i class="bi bi-bell"></i>
+          <span class="badge">2</span>
+        </div>
+
+        <div class="user-profile" onclick="window.location.href='./index.html';" style="cursor: pointer;">
+          <div class="profile-img">
+            <span>U</span>
+          </div>
+          <div class="profile-info">
+            <span class="user-name">User</span>
+            <span class="user-role">Ekip Üyesi</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content Area -->
+    <div class="content-container">
+      <!-- Sayfa başlığı -->
+      <div class="content-header">
+        <h2 class="page-title">Profilim</h2>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../dashboard/member.html">Ana Sayfa</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Profilim</li>
+          </ol>
+        </nav>
+      </div>
+
+      <!-- Profil İçeriği -->
+      <div class="row">
+        <!-- Profil Bilgileri -->
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body text-center">
+              <div class="profile-image mb-3">
+                <div class="avatar-xl mx-auto">U</div>
+              </div>
+              <h4 class="card-title">User</h4>
+              <p class="text-muted">Ekip Üyesi</p>
+              <p class="text-muted small">user@example.com</p>
+
+              <div class="d-grid gap-2 mt-4">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                  <i class="bi bi-pencil"></i> Profili Düzenle
+                </button>
+                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+                  <i class="bi bi-key"></i> Şifre Değiştir
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hızlı İstatistikler -->
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title mb-0">İstatistikler</h5>
+            </div>
+            <div class="card-body">
+              <div class="row text-center">
+                <div class="col-6 border-end">
+                  <h4 class="text-primary">2</h4>
+                  <p class="text-muted small mb-0">Aktif Proje</p>
+                </div>
+                <div class="col-6">
+                  <h4 class="text-success">8</h4>
+                  <p class="text-muted small mb-0">Tamamlanan Görev</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row text-center">
+                <div class="col-6 border-end">
+                  <h4 class="text-warning">3</h4>
+                  <p class="text-muted small mb-0">Devam Eden Görev</p>
+                </div>
+                <div class="col-6">
+                  <h4 class="text-info">42s</h4>
+                  <p class="text-muted small mb-0">Toplam Çalışma</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ana İçerik -->
+        <div class="col-md-8 mb-4">
+          <!-- Kişisel Bilgiler -->
+          <div class="card mb-4">
+            <div class="card-header">
+              <h5 class="card-title mb-0">Kişisel Bilgiler</h5>
+            </div>
+            <div class="card-body">
+              <div class="row mb-3">
+                <div class="col-md-3 text-muted">Ad Soyad</div>
+                <div class="col-md-9">User</div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-3 text-muted">E-posta</div>
+                <div class="col-md-9">user@example.com</div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-3 text-muted">Telefon</div>
+                <div class="col-md-9">+90 532 123 4567</div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-3 text-muted">Rol</div>
+                <div class="col-md-9">
+                  <span class="badge bg-primary">Ekip Üyesi</span>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-3 text-muted">Kayıt Tarihi</div>
+                <div class="col-md-9">15 Mart 2025</div>
+              </div>
+              <div class="row">
+                <div class="col-md-3 text-muted">Son Giriş</div>
+                <div class="col-md-9">Bugün, 09:45</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Yetenekler -->
+          <div class="card mb-4">
+            <div class="card-header">
+              <h5 class="card-title mb-0">Yetenekler</h5>
+            </div>
+            <div class="card-body">
+              <div class="d-flex flex-wrap gap-2">
+                <span class="badge bg-primary p-2">Python</span>
+                <span class="badge bg-primary p-2">Data Science</span>
+                <span class="badge bg-primary p-2">NumPy</span>
+                <span class="badge bg-primary p-2">Pandas</span>
+                <span class="badge bg-primary p-2">Scikit-learn</span>
+                <span class="badge bg-primary p-2">Machine Learning</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Son Aktiviteler -->
+          <div class="card mb-4">
+            <div class="card-header">
+              <h5 class="card-title mb-0">Son Aktiviteler</h5>
+            </div>
+            <div class="card-body">
+              <ul class="activity-list">
+                <li class="activity-item">
+                  <div class="activity-icon bg-success">
+                    <i class="bi bi-check-circle"></i>
+                  </div>
+                  <div class="activity-content">
+                    <div class="activity-title">Görev Tamamlandı</div>
+                    <div class="activity-text">Login sayfası tasarımı tamamlandı</div>
+                    <div class="activity-time">Bugün, 10:30</div>
+                  </div>
+                </li>
+                <li class="activity-item">
+                  <div class="activity-icon bg-primary">
+                    <i class="bi bi-plus-circle"></i>
+                  </div>
+                  <div class="activity-content">
+                    <div class="activity-title">Yeni Görev</div>
+                    <div class="activity-text">Responsive tasarım görevine atandınız</div>
+                    <div class="activity-time">Dün, 15:45</div>
+                  </div>
+                </li>
+                <li class="activity-item">
+                  <div class="activity-icon bg-info">
+                    <i class="bi bi-pencil"></i>
+                  </div>
+                  <div class="activity-content">
+                    <div class="activity-title">Profil Güncellendi</div>
+                    <div class="activity-text">Yetenekler bölümü güncellendi</div>
+                    <div class="activity-time">2 gün önce, 14:20</div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+      <p>&copy; 2025 Görev Takip Sistemi. Tüm hakları saklıdır.</p>
+    </footer>
+  </div>
+</div>
+
+<!-- Profil Düzenleme Modal -->
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editProfileModalLabel">Profili Düzenle</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="editProfileForm">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="firstName" class="form-label">Ad</label>
+              <input type="text" class="form-control" id="firstName" value="User">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="lastName" class="form-label">Soyad</label>
+              <input type="text" class="form-control" id="lastName" value="">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">E-posta</label>
+            <input type="email" class="form-control" id="email" value="user@example.com">
+          </div>
+          <div class="mb-3">
+            <label for="phone" class="form-label">Telefon</label>
+            <input type="tel" class="form-control" id="phone" value="+90 532 123 4567">
+          </div>
+          <div class="mb-3">
+            <label for="bio" class="form-label">Hakkımda</label>
+            <textarea class="form-control" id="bio" rows="3" placeholder="Kendiniz hakkında kısa bir açıklama yazın..."></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="skills" class="form-label">Yetenekler</label>
+            <input type="text" class="form-control" id="skills" value="Python, Data Science, NumPy, Pandas, Scikit-learn, Machine Learning" placeholder="Yetenekleri virgülle ayırın">
+          </div>
+          <div class="mb-3">
+            <label for="profilePicture" class="form-label">Profil Fotoğrafı</label>
+            <input type="file" class="form-control" id="profilePicture" accept="image/*">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+        <button type="button" class="btn btn-primary" onclick="saveProfile()">Kaydet</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Şifre Değiştirme Modal -->
+<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="changePasswordModalLabel">Şifre Değiştir</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="changePasswordForm">
+          <div class="mb-3">
+            <label for="currentPassword" class="form-label">Mevcut Şifre</label>
+            <input type="password" class="form-control" id="currentPassword" required>
+          </div>
+          <div class="mb-3">
+            <label for="newPassword" class="form-label">Yeni Şifre</label>
+            <input type="password" class="form-control" id="newPassword" required>
+          </div>
+          <div class="mb-3">
+            <label for="confirmNewPassword" class="form-label">Yeni Şifre (Tekrar)</label>
+            <input type="password" class="form-control" id="confirmNewPassword" required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+        <button type="button" class="btn btn-primary" onclick="changePassword()">Şifre Değiştir</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS -->
+<script src="../assets/js/main.js"></script>
+
+<script>
+  // Profil kaydetme fonksiyonu
+  function saveProfile() {
+    const formData = {
+      firstName: document.getElementById('firstName').value,
+      lastName: document.getElementById('lastName').value,
+      email: document.getElementById('email').value,
+      phone: document.getElementById('phone').value,
+      bio: document.getElementById('bio').value,
+      skills: document.getElementById('skills').value.split(',').map(skill => skill.trim())
+    };
+
+    // API çağrısı burada yapılacak
+    console.log('Profil güncelleniyor:', formData);
+
+    alert('Profil başarıyla güncellendi!');
+
+    // Modal'ı kapat
+    const modal = bootstrap.Modal.getInstance(document.getElementById('editProfileModal'));
+    modal.hide();
+
+    // Sayfayı yenile
+    location.reload();
+  }
+
+  // Şifre değiştirme fonksiyonu
+  function changePassword() {
+    const currentPassword = document.getElementById('currentPassword').value;
+    const newPassword = document.getElementById('newPassword').value;
+    const confirmNewPassword = document.getElementById('confirmNewPassword').value;
+
+    // Basit validation
+    if (!currentPassword || !newPassword || !confirmNewPassword) {
+      alert('Lütfen tüm alanları doldurun!');
+      return;
+    }
+
+    if (newPassword !== confirmNewPassword) {
+      alert('Yeni şifreler eşleşmiyor!');
+      return;
+    }
+
+    if (newPassword.length < 6) {
+      alert('Yeni şifre en az 6 karakter olmalıdır!');
+      return;
+    }
+
+    // API çağrısı burada yapılacak
+    console.log('Şifre değiştiriliyor...');
+
+    alert('Şifre başarıyla değiştirildi!');
+
+    // Form'u temizle
+    document.getElementById('changePasswordForm').reset();
+
+    // Modal'ı kapat
+    const modal = bootstrap.Modal.getInstance(document.getElementById('changePasswordModal'));
+    modal.hide();
+  }
+
+  // Profil fotoğrafı değiştirme
+  document.getElementById('profilePicture').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        // Burada fotoğraf önizlemesi yapılabilir
+        console.log('Profil fotoğrafı seçildi:', file.name);
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+</script>
+
+<style>
+  .avatar-xl {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    font-weight: bold;
+  }
+
+  .profile-image {
+    position: relative;
+  }
+
+  .card-title {
+    color: var(--text-color);
+  }
+
+  .activity-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .activity-item {
+    display: flex;
+    margin-bottom: 20px;
+  }
+
+  .activity-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-right: 15px;
+    flex-shrink: 0;
+  }
+
+  .activity-content {
+    flex: 1;
+  }
+
+  .activity-title {
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .activity-text {
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+
+  .activity-time {
+    font-size: 12px;
+    color: var(--text-light);
+  }
+</style>
+</body>
+</html>

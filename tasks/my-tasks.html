@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Görev Takip Sistemi - Görevlerim</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+</head>
+<body>
+<div class="dashboard-container">
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="brand-container">
+      <div class="brand-logo">T</div>
+      <h4 class="brand-name">TaskTrack</h4>
+    </div>
+
+    <div class="menu-container">
+      <ul class="nav-menu">
+        <li class="menu-item">
+          <a href="../dashboard/member.html">
+            <i class="bi bi-speedometer2"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="menu-item active">
+          <a href="./my-tasks.html">
+            <i class="bi bi-list-task"></i>
+            <span>Görevlerim</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="../projects/my-projects.html">
+            <i class="bi bi-kanban"></i>
+            <span>Projelerim</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="../index.html" id="logoutBtn">
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Çıkış Yap</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="bi bi-list"></i>
+      </div>
+
+      <div class="header-right">
+        <div class="notifications">
+          <i class="bi bi-bell"></i>
+          <span class="badge">2</span>
+        </div>
+
+        <div class="user-profile" onclick="window.location.href='../profile/index.html';" style="cursor: pointer;">
+          <div class="profile-img">
+            <span>U</span>
+          </div>
+          <div class="profile-info">
+            <span class="user-name">User</span>
+            <span class="user-role">Ekip Üyesi</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content Area -->
+    <div class="content-container">
+      <!-- Sayfa başlığı -->
+      <div class="content-header">
+        <h2 class="page-title">Görevlerim</h2>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../dashboard/member.html">Ana Sayfa</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Görevlerim</li>
+          </ol>
+        </nav>
+      </div>
+
+      <!-- Görev İstatistikleri -->
+      <div class="row mb-4">
+        <div class="col-md-3 mb-3">
+          <div class="stats-card">
+            <div class="stats-card-body">
+              <div class="stats-card-icon bg-primary">
+                <i class="bi bi-list-task"></i>
+              </div>
+              <div class="stats-card-content">
+                <h5 class="stats-card-title">Toplam Görev</h5>
+                <h3 class="stats-card-value">11</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="stats-card">
+            <div class="stats-card-body">
+              <div class="stats-card-icon bg-warning">
+                <i class="bi bi-clock"></i>
+              </div>
+              <div class="stats-card-content">
+                <h5 class="stats-card-title">Bekleyen</h5>
+                <h3 class="stats-card-value">3</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="stats-card">
+            <div class="stats-card-body">
+              <div class="stats-card-icon bg-info">
+                <i class="bi bi-arrow-repeat"></i>
+              </div>
+              <div class="stats-card-content">
+                <h5 class="stats-card-title">Devam Ediyor</h5>
+                <h3 class="stats-card-value">2</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="stats-card">
+            <div class="stats-card-body">
+              <div class="stats-card-icon bg-success">
+                <i class="bi bi-check-circle-fill"></i>
+              </div>
+              <div class="stats-card-content">
+                <h5 class="stats-card-title">Tamamlandı</h5>
+                <h3 class="stats-card-value">6</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Görev Filtreleri -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <form class="row g-3" id="taskFilterForm">
+            <div class="col-md-4">
+              <label for="filterProject" class="form-label">Proje</label>
+              <select class="form-select" id="filterProject">
+                <option value="">Tüm Projeler</option>
+                <option value="web-renewal">Web Sitesi Yenileme</option>
+                <option value="api-integration">API Entegrasyonu</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="filterStatus" class="form-label">Durum</label>
+              <select class="form-select" id="filterStatus">
+                <option value="">Tümü</option>
+                <option value="pending">Beklemede</option>
+                <option value="in_progress">Devam Ediyor</option>
+                <option value="completed">Tamamlandı</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="filterPriority" class="form-label">Öncelik</label>
+              <select class="form-select" id="filterPriority">
+                <option value="">Tümü</option>
+                <option value="high">Yüksek</option>
+                <option value="medium">Orta</option>
+                <option value="low">Düşük</option>
+              </select>
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+              <button type="submit" class="btn btn-primary w-100">Filtrele</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Görevler Tabs -->
+      <div class="card">
+        <div class="card-body">
+          <ul class="nav nav-tabs mb-4" id="taskTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all-tasks" type="button" role="tab" aria-controls="all-tasks" aria-selected="true">
+                Tüm Görevler <span class="badge bg-secondary ms-1">5</span>
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="todo-tab" data-bs-toggle="tab" data-bs-target="#todo-tasks" type="button" role="tab" aria-controls="todo-tasks" aria-selected="false">
+                Beklemede <span class="badge bg-warning ms-1">3</span>
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="progress-tab" data-bs-toggle="tab" data-bs-target="#progress-tasks" type="button" role="tab" aria-controls="progress-tasks" aria-selected="false">
+                Devam Ediyor <span class="badge bg-info ms-1">2</span>
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="completed-tab" data-bs-toggle="tab" data-bs-target="#completed-tasks" type="button" role="tab" aria-controls="completed-tasks" aria-selected="false">
+                Tamamlandı <span class="badge bg-success ms-1">6</span>
+              </button>
+            </li>
+          </ul>
+
+          <div class="tab-content" id="taskTabsContent">
+            <!-- Tüm Görevler Tab -->
+            <div class="tab-pane fade show active" id="all-tasks" role="tabpanel" aria-labelledby="all-tab">
+              <div class="task-list">
+                <!-- Görev 1 -->
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                      <div class="flex-grow-1">
+                        <div class="d-flex align-items-center mb-2">
+                          <div class="task-priority high me-3"></div>
+                          <h6 class="mb-0">
+                            <a href="./detail.html" class="text-decoration-none">Frontend Geliştirme - Giriş Sayfası</a>
+                          </h6>
+                          <span class="badge bg-danger ms-2">Yüksek</span>
+                        </div>
+                        <p class="text-muted small mb-2">Web sitesi giriş sayfasının modern tasarım ile geliştirilmesi</p>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <small class="text-muted">
+                              <i class="bi bi-kanban"></i> Web Sitesi Yenileme
+                            </small>
+                          </div>
+                          <div class="col-md-6">
+                            <small class="text-muted">
+                              <i class="bi bi-calendar-event"></i> Son Tarih: 20 Mayıs 2025
+                            </small>
+                          </div>
+                        </div>
+                        <div class="progress mt-2" style="height: 6px;">
+                          <div class="progress-bar bg-warning" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <small class="text-muted">%50 tamamlandı</small>
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <span class="badge bg-warning me-2">Devam Ediyor</span>
+                        <div class="dropdown">
+                          <button class="btn btn-sm btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical"></i>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="./detail.html"><i class="bi bi-eye me-2"></i>Görüntüle</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="markAsCompleted(1)"><i class="bi bi-check-circle me-2"></i>Tamamlandı İşaretle</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateProgress(1)"><i class="bi bi-arrow-repeat me-2"></i>İlerleme Güncelle</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Görev 2 -->
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                      <div class="flex-grow-1">
+                        <div class="d-flex align-items-center mb-2">
+                          <div class="task-priority medium me-3"></div>
+                          <h6 class="mb-0">
+                            <a href="./detail.html" class="text-decoration-none">Responsive Tasarım Düzenlemeleri</a>
+                          </h6>
+                          <span class="badge bg-warning ms-2">Orta</span>
+                        </div>
+                        <p class="text-muted small mb-2">Mobil cihazlar için responsive tasarım optimizasyonları</p>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <small class="text-muted">
+                              <i class="bi bi-kanban"></i> Web Sitesi Yenileme
+                            </small>
+                          </div>
+                          <div class="col-md-6">
+                            <small class="text-muted">
+                              <i class="bi bi-calendar-event"></i> Son Tarih: 25 Mayıs 2025
+                            </small>
+                          </div>
+                        </div>
+                        <div class="progress mt-2" style="height: 6px;">
+                          <div class="progress-bar bg-info" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <small class="text-muted">%30 tamamlandı</small>
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <span class="badge bg-info me-2">Devam Ediyor</span>
+                        <div class="dropdown">
+                          <button class="btn btn-sm btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical"></i>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="./detail.html"><i class="bi bi-eye me-2"></i>Görüntüle</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="markAsCompleted(2)"><i class="bi bi-check-circle me-2"></i>Tamamlandı İşaretle</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateProgress(2)"><i class="bi bi-arrow-repeat me-2"></i>İlerleme Güncelle</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Görev 3 -->
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                      <div class="flex-grow-1">
+                        <div class="d-flex align-items-center mb-2">
+                          <div class="task-priority low me-3"></div>
+                          <h6 class="mb-0">
+                            <a href="./detail.html" class="text-decoration-none">Dokümantasyon Hazırlama</a>
+                          </h6>
+                          <span class="badge bg-info ms-2">Düşük</span>
+                        </div>
+                        <p class="text-muted small mb-2">API entegrasyonu için teknik dokümantasyon hazırlanması</p>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <small class="text-muted">
+                              <i class="bi bi-kanban"></i> API Entegrasyonu
+                            </small>
+                          </div>
+                          <div class="col-md-6">
+                            <small class="text-muted">
+                              <i class="bi bi-calendar-event"></i> Son Tarih: 5 Haziran 2025
+                            </small>
+                          </div>
+                        </div>
+                        <div class="progress mt-2" style="height: 6px;">
+                          <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <small class="text-muted">%75 tamamlandı</small>
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <span class="badge bg-warning me-2">Devam Ediyor</span>
+                        <div class="dropdown">
+                          <button class="btn btn-sm btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical"></i>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="./detail.html"><i class="bi bi-eye me-2"></i>Görüntüle</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="markAsCompleted(3)"><i class="bi bi-check-circle me-2"></i>Tamamlandı İşaretle</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="updateProgress(3)"><i class="bi bi-arrow-repeat me-2"></i>İlerleme Güncelle</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Beklemede Tab -->
+            <div class="tab-pane fade" id="todo-tasks" role="tabpanel" aria-labelledby="todo-tab">
+              <div class="alert alert-info">
+                <i class="bi bi-clock"></i> Henüz başlamadığınız görevler burada görünecektir.
+              </div>
+            </div>
+
+            <!-- Devam Ediyor Tab -->
+            <div class="tab-pane fade" id="progress-tasks" role="tabpanel" aria-labelledby="progress-tab">
+              <div class="task-list">
+                <!-- Yukarıdaki devam eden görevler burada tekrarlanacak -->
+              </div>
+            </div>
+
+            <!-- Tamamlandı Tab -->
+            <div class="tab-pane fade" id="completed-tasks" role="tabpanel" aria-labelledby="completed-tab">
+              <div class="task-list">
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                      <div class="flex-grow-1">
+                        <div class="d-flex align-items-center mb-2">
+                          <div class="task-priority high me-3"></div>
+                          <h6 class="mb-0">
+                            <a href="./detail.html" class="text-decoration-none">Login Sayfası Tasarımı</a>
+                          </h6>
+                          <span class="badge bg-danger ms-2">Yüksek</span>
+                        </div>
+                        <p class="text-muted small mb-2">Kullanıcı giriş sayfasının tasarımı ve geliştirimi</p>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <small class="text-muted">
+                              <i class="bi bi-kanban"></i> Web Sitesi Yenileme
+                            </small>
+                          </div>
+                          <div class="col-md-6">
+                            <small class="text-muted">
+                              <i class="bi bi-calendar-check"></i> Tamamlanma: 18 Mayıs 2025
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <span class="badge bg-success me-2">Tamamlandı</span>
+                        <div class="dropdown">
+                          <button class="btn btn-sm btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical"></i>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="./detail.html"><i class="bi bi-eye me-2"></i>Görüntüle</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+      <p>&copy; 2025 Görev Takip Sistemi. Tüm hakları saklıdır.</p>
+    </footer>
+  </div>
+</div>
+
+<!-- Progress Update Modal -->
+<div class="modal fade" id="progressModal" tabindex="-1" aria-labelledby="progressModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="progressModalLabel">İlerleme Güncelle</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="progressForm">
+          <div class="mb-3">
+            <label for="progressSlider" class="form-label">İlerleme Yüzdesi</label>
+            <input type="range" class="form-range" id="progressSlider" min="0" max="100" value="0">
+            <div class="d-flex justify-content-between">
+              <span>0%</span>
+              <span id="progressValue">0%</span>
+              <span>100%</span>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="progressNote" class="form-label">Not (Opsiyonel)</label>
+            <textarea class="form-control" id="progressNote" rows="3" placeholder="İlerleme hakkında not ekleyin..."></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+        <button type="button" class="btn btn-primary" onclick="saveProgress()">Kaydet</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS -->
+<script src="../assets/js/main.js"></script>
+
+<script>
+  // İlerleme slider'ını güncelle
+  document.getElementById('progressSlider').addEventListener('input', function() {
+    document.getElementById('progressValue').textContent = this.value + '%';
+  });
+
+  // Görev tamamlandı işaretle
+  function markAsCompleted(taskId) {
+    if (confirm('Bu görevi tamamlandı olarak işaretlemek istediğinizden emin misiniz?')) {
+      // API çağrısı burada yapılacak
+      console.log('Görev ' + taskId + ' tamamlandı olarak işaretlendi');
+      alert('Görev başarıyla tamamlandı olarak işaretlendi!');
+      // Sayfayı yenile
+      location.reload();
+    }
+  }
+
+  // İlerleme güncelle modal'ını aç
+  function updateProgress(taskId) {
+    document.getElementById('progressForm').setAttribute('data-task-id', taskId);
+    const modal = new bootstrap.Modal(document.getElementById('progressModal'));
+    modal.show();
+  }
+
+  // İlerleme kaydet
+  function saveProgress() {
+    const taskId = document.getElementById('progressForm').getAttribute('data-task-id');
+    const progress = document.getElementById('progressSlider').value;
+    const note = document.getElementById('progressNote').value;
+
+    // API çağrısı burada yapılacak
+    console.log('Görev ' + taskId + ' ilerleme: ' + progress + '%, Not: ' + note);
+
+    alert('İlerleme başarıyla güncellendi!');
+
+    // Modal'ı kapat
+    const modal = bootstrap.Modal.getInstance(document.getElementById('progressModal'));
+    modal.hide();
+
+    // Sayfayı yenile
+    location.reload();
+  }
+
+  // Tab'ları dinamik olarak doldur
+  document.addEventListener('DOMContentLoaded', function() {
+    const tabButtons = document.querySelectorAll('#taskTabs button[data-bs-toggle="tab"]');
+
+    tabButtons.forEach(function(button) {
+      button.addEventListener('shown.bs.tab', function(event) {
+        const tabId = event.target.getAttribute('data-bs-target').replace('#', '');
+        loadTabContent(tabId);
+      });
+    });
+  });
+
+  function loadTabContent(tabId) {
+    // Bu fonksiyon gerçek uygulamada API'den veri çekecek
+    // Şimdilik basit bir simülasyon yapıyoruz
+    console.log('Loading content for tab: ' + tabId);
+  }
+
+  // Filtre form işlemi
+  document.getElementById('taskFilterForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const project = document.getElementById('filterProject').value;
+    const status = document.getElementById('filterStatus').value;
+    const priority = document.getElementById('filterPriority').value;
+
+    console.log('Filter applied:', { project, status, priority });
+
+    // Bu kısımda filtreleme işlemi yapılacak
+    alert('Filtre uygulandı! (Geliştirme aşamasında)');
+  });
+</script>
+
+<style>
+  .task-priority {
+    width: 4px;
+    height: 40px;
+    border-radius: 2px;
+  }
+
+  .task-priority.high {
+    background-color: var(--danger-color);
+  }
+
+  .task-priority.medium {
+    background-color: var(--warning-color);
+  }
+
+  .task-priority.low {
+    background-color: var(--info-color);
+  }
+</style>
+</body>
+</html>
